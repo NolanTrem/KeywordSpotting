@@ -16,7 +16,7 @@ clear f_i a_i;
 
 
 %% feed input signal into feature extractor
-x_o = fn_fex(t,x_i,1600, 100, 4000, 3, 1);
+x_o = fn_fex(t,x_i,16, 100, 4000, 3, 1);
 
 
 %% plot input to and output of feature extractor
