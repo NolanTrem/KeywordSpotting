@@ -16,7 +16,3 @@ legend({'input','output'},'location','northwest');
 title('input/output of envelope detector');
 xlabel('time [ms]');
 ylabel('amplitude [#]'); ylim([-0.5,1.5]);
-
-
-
-

@@ -26,7 +26,3 @@ imagesc(x_o);
 title('output spectrogram');
 xlabel('sample index (10ms per sample) [#]');
 ylabel('feature index (in reverse order) [#]');
-
-
-
-

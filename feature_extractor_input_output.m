@@ -4,7 +4,7 @@
 % function.
 
 %% define time and generate input signal
-x = "/Users/nolantremelling/matlab/Analog Machine Learning Research/Practice Spectrogram/speech_commands_v0.02/sheila/0ea0e2f4_nohash_0.wav";
+x = "/Users/nolantremelling/matlab/Analog Machine Learning Research/Practice Spectrogram/speech_commands_v0.02/sheila/0d393936_nohash_1.wav";
 x_preproc = fn_preprocess_audio_clip(audioread(x));
 t_start = 0; t_stop = 1; t_step = 6.25e-5;
 t = t_start:t_step:t_stop-t_step;
@@ -12,10 +12,11 @@ t = t_start:t_step:t_stop-t_step;
 x_i = x_preproc;
 clear f_i a_i;
 
+%createFilterbankAndPlot = sc_create_filterbank_and_plot_response(1, 100, 4000, 3, 1);
 
 
 %% feed input signal into feature extractor
-x_o = fn_fex(t,x_i);
+x_o = fn_fex(t,x_i,1600, 100, 4000, 3, 1);
 
 
 %% plot input to and output of feature extractor
@@ -34,5 +35,3 @@ imagesc(x_o);
 title('output spectrogram');
 xlabel('sample index (10ms per sample) [#]');
 ylabel('feature index (in reverse order) [#]');
-
-

@@ -1,13 +1,17 @@
-function x_o = fn_fex(t,x_i)
+function x_o = fn_fex(t,x_i,n_filters,f_c_min,f_c_max,q,a_pb)
+
+createFilterbankAndPlot = sc_create_filterbank_and_plot_response(n_filters,f_c_min,f_c_max,q,a_pb);
 
 % feed input signal through filterbank
 load('filterbank');
 
-x_f = zeros(length(filterbank(:,:,:,1)),length(t)); % initialize matrix to store filterbank outputs, with filters indexed along rows and time indexed along columns
+
+x_f = zeros(length(createFilterbankAndPlot(:,:,:,1)),length(t)); % initialize matrix to store filterbank outputs, with filters indexed along rows and time indexed along columns
 for i=1:size(x_f,1)
-    x_f(i,:) = lsim(filterbank(:,:,i,1),x_i,t);
+    x_f(i,:) = lsim(createFilterbankAndPlot(:,:,i,1),x_i,t);
 end
 clear i;
+
 
 
 

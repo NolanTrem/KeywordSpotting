@@ -13,5 +13,3 @@ x_pad_norm = x_pad_norm/rms(x_pad_norm); % then, normalize to unit-rms
 
 % return output
 x_preproc = x_pad_norm;
-
-
