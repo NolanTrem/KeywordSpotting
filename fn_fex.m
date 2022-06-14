@@ -1,9 +1,11 @@
-function x_o = fn_fex(t,x_i,n_filters,f_c_min,f_c_max,q,a_pb)
+function x_o = fn_fex(t_start, t_stop, x_i, n_filters,f_c_min,f_c_max, q, a_pb)
 
 createFilterbankAndPlot = sc_create_filterbank_and_plot_response(n_filters,f_c_min,f_c_max,q,a_pb);
 
 % feed input signal through filterbank
 load('filterbank');
+t_step = (t_stop - t_start)/16000;
+t = t_start:t_step:t_stop-t_step;
 
 
 x_f = zeros(length(createFilterbankAndPlot(:,:,:,1)),length(t)); % initialize matrix to store filterbank outputs, with filters indexed along rows and time indexed along columns

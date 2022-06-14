@@ -8,13 +8,9 @@
 % use *. to go through all of the files in the folder with a for loop
 % use 
 %% define time and generate input signal
-x = "/Users/nolantremelling/matlab/Analog Machine Learning Research/FeatureExtractorParameters/speech_commands_v0.02/myTest";
+x = "/Users/nolantremelling/matlab/Analog Machine Learning Research/Analog Machine Learning/speech_commands_v0.02/myTest";
 
-%This should be added into the parameters
-%If I make a change, I should be able to make a commit
-%Likewise, I can pull the current file :)
-t_start = 0; t_stop = 1; t_step = 6.25e-5;
-t = t_start:t_step:t_stop-t_step;
+
 
 clear f_i a_i;
 
@@ -29,7 +25,7 @@ for k=1:length(theFiles)
     x_preproc = fn_preprocess_audio_clip(audioread(fullFileName));
     x_i = x_preproc;
     %% feed input signal into feature extractor
-    x_o = fn_fex(t, x_i, 32, 100, 4000, 3, 1);
+    x_o = fn_fex(0, 1, x_i, 32, 100, 4000, 3, 1);
 
     %% plot input to and output of feature extractor
     figure;
