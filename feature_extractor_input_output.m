@@ -11,6 +11,7 @@
 x = "/Users/nolantremelling/matlab/Analog Machine Learning Research/FeatureExtractorParameters/speech_commands_v0.02/myTest";
 
 %This should be added into the parameters
+%If I make a change, I should be able to make a commit
 t_start = 0; t_stop = 1; t_step = 6.25e-5;
 t = t_start:t_step:t_stop-t_step;
 
