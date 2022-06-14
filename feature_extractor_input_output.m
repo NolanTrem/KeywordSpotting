@@ -12,6 +12,7 @@ x = "/Users/nolantremelling/matlab/Analog Machine Learning Research/FeatureExtra
 
 %This should be added into the parameters
 %If I make a change, I should be able to make a commit
+%Likewise, I can pull the current file :)
 t_start = 0; t_stop = 1; t_step = 6.25e-5;
 t = t_start:t_step:t_stop-t_step;
 
