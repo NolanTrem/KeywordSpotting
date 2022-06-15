@@ -48,5 +48,6 @@ for k=1:length(theFiles)
     %save the file
     [filepath,name,ext] = fileparts(currentFile);
     folder = "/Users/mg/Desktop/whatever";
-    saveas(gca,fullfile(folder,name),'jpg');
+    saveas(gca,fullfile(folder,name),'jpg'); %hghghghgh
+    
 end
