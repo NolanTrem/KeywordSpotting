@@ -19,24 +19,26 @@ filePattern = fullfile(x,"*.wav");
 theFiles = dir(filePattern);
 
 for k=1:length(theFiles)
-    curerntFile = theFiles(k).name;
-    fullFileName = fullfile(theFiles(k).folder, curerntFile);% get the name of the file to process
+    
+    currentFile = theFiles(k).name;
+    fullFileName = fullfile(theFiles(k).folder, currentFile);% get the name of the file to process
     % preprocess the file
     x_preproc = fn_preprocess_audio_clip(audioread(fullFileName));
     x_i = x_preproc;
     %% feed input signal into feature extractor
     x_o = fn_fex(0, 1, x_i, 32, 100, 4000, 3, 1);
-
-    %% plot input to and output of feature extractor
+   
+    % plot input to and output of feature extractor
     figure;
-
+    
     % input
     subplot(2,1,1);
     input = plot(x_preproc);
     title('input signal');
     xlabel('time [ms]');
     ylabel('amplitude [#]');
-    exportgraphics(gca, strcat('input_', curerntFile, '.jpg'));
+    %saveas(input,'curerntFile.jpg');
+  %exportgraphics(gca, strcat('input_', curerntFile, '.jpg'));
     
     % output
     subplot(2,1,2);
@@ -44,7 +46,9 @@ for k=1:length(theFiles)
     title('output spectrogram');
     xlabel('sample index (10ms per sample) [#]');
     ylabel('feature index (in reverse order) [#]');
-    exportgraphics(gca, strcat('output_', curerntFile, '.jpg'));
+    %saveas(output,'curerntFile.jpg');
+    %exportgraphics(gca, strcat('output_', curerntFile, '.jpg'));
+    %get the name of the file and save output as jpg
+    [filepath,name,ext] = fileparts(currentFile);
+    saveas(gca,name,'jpg');
 end
-
-
