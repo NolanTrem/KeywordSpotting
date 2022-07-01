@@ -8,7 +8,7 @@
 % use *. to go through all of the files in the folder with a for loop
 % use 
 %% define time and generate input signal
-x = "/Users/nolantremelling/matlab/Analog Machine Learning Research/Analog Machine Learning/speech_commands_v0.02/myTest";
+x = "/Users/mg/Desktop/speech_commands_v0.02/sheila";
 
 
 
@@ -37,8 +37,6 @@ for k=1:length(theFiles)
     title('input signal');
     xlabel('time [ms]');
     ylabel('amplitude [#]');
-    %saveas(input,'curerntFile.jpg');
-  %exportgraphics(gca, strcat('input_', curerntFile, '.jpg'));
     
     % output
     subplot(2,1,2);
@@ -46,9 +44,10 @@ for k=1:length(theFiles)
     title('output spectrogram');
     xlabel('sample index (10ms per sample) [#]');
     ylabel('feature index (in reverse order) [#]');
-    %saveas(output,'curerntFile.jpg');
-    %exportgraphics(gca, strcat('output_', curerntFile, '.jpg'));
-    %get the name of the file and save output as jpg
+
+    %save the file
     [filepath,name,ext] = fileparts(currentFile);
-    saveas(gca,name,'jpg');
+    folder = "/Users/mg/Desktop/whatever";
+    saveas(gca,fullfile(folder,name),'jpg'); %hghghghgh
+    
 end
