@@ -90,4 +90,3 @@ for k = 1:length(validation)
     cd('/Volumes/NolansDrive/Processed Data/3210040003/validationList')
     movefile('*.jpg', valName);
 end
-
