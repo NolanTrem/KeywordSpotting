@@ -30,32 +30,34 @@ f_c_min = 100;
 f_c_max = 4000;
 q = 3;
 a_pb = 1;
+weight = 0.01;
 
 %% Define and create directories
 clear f_i a_i;
 
 % Defines all folders in dataset
-% folders = {'backward'; 'bed'; 'bird'; 'cat'; 'dog'; 'down'; 'eight';
-%     'five'; 'follow'; 'forward'; 'four'; 'go'; 'happy'; 'house'; 'learn';
-%     'left'; 'marvin'; 'nine'; 'no'; 'off'; 'on'; 'one'; 'right'; 'seven';
-%     'sheila'; 'six'; 'stop'; 'three'; 'two'; 'up'; 'visual'; 'wow'; 'yes';
-%     'zeros'};
+folders = {'backward'; 'bed'; 'bird'; 'cat'; 'dog'; 'down'; 'eight';
+    'five'; 'follow'; 'forward'; 'four'; 'go'; 'happy'; 'house'; 'learn';
+    'left'; 'marvin'; 'nine'; 'no'; 'off'; 'on'; 'one'; 'right'; 'seven';
+    'sheila'; 'six'; 'stop'; 'three'; 'tree'; 'two'; 'up'; 'visual'; 'wow';
+    'yes'; 'zeros'};
 
-folders = {'zero'};
-
-newDir = ['/Volumes/NolansDrive/Processed Data/' num2str(n_filters) num2str(f_c_min) num2str(f_c_max) num2str(q)];
+fexFolder = horzcat('N', num2str(n_filters), '_Min', num2str(f_c_min), '_Max', num2str(f_c_max), '_Q', num2str(q));
+newDir = ['/Users/nolantremelling/matlab/Analog Machine Learning Research/Analog Machine Learning/' fexFolder];
 disp(newDir)
-%mkdir(newDir);
+mkdir(newDir);
 
 %% Create directories and feed images to feature extractor
-for k = 1: length(folders)
+for k = 1: length(folders)*weight
     mkdir([newDir  '/' folders{k}])
     %mkdir([newDir  '/' folders{k} '/' '_ProcessedOutput'])
 
     filePattern = fullfile(speechCommands, "/", folders{k}, "/*.wav");
     theFiles = dir(filePattern);
 
-    for i = 1: length(theFiles)
+    n_rows = 31; n_cols = 100; n_channels = 1; % dimension of feature
+    x_train = zeros(n_rows,n_cols,n_channels,2); % initialize post-feature extraction training set
+    for i = 1: 3
         currentFile = theFiles(i).name;
         % Get name of current file
         fullFileName = fullfile(theFiles(i).folder, currentFile);
@@ -67,17 +69,25 @@ for k = 1: length(folders)
         % Run input signal in feature extractor
         x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
 
-        output = imagesc(x_o);
-        title('Output Spectrogram');
-        xlabel('sample index (10ms per sample) [#]');
-        ylabel('feature index (in reverse order) [#]');
+        x_train(:,:,:,i) = x_o;
 
-        %save the file
-        [filepath,name,ext] = fileparts(currentFile);
-        folder = ([newDir  '/' folders{k}]);
-        saveas(gca,fullfile(folder,name),'jpg');
-
+        %label
     end
 end
 
-%% Make copies of 
+%% Make copies for validation list
+validation = readlines('/Users/nolantremelling/matlab/Analog Machine Learning Research/Analog Machine Learning/Speech Command Datasets/speech_commands_v0.02/testing_list.txt');
+cd(newDir)
+mkdir 'validationList'
+
+for k = 1:length(validation)
+    valFile = strcat(newDir, '/', validation(k));
+    valDestination = strcat('/Volumes/NolansDrive/Processed Data/3210040003/validationList');
+    valName = strcat(validation(k));
+    newStr = extractAfter(valName,"/");
+    copyfile(valFile, valDestination);
+
+    cd('/Volumes/NolansDrive/Processed Data/3210040003/validationList')
+    movefile('*.jpg', valName);
+end
+
