@@ -8,7 +8,6 @@
 % a massive dataset of processed audio.
 
 %% Define dataset source
-
 % In the final implementation these parameters will be given a range such
 % that they will be stepped through rather than hardcoded.
 t_start = 0;
@@ -19,13 +18,10 @@ f_c_min = 100;
 f_c_max = 4000;
 q = 3;
 a_pb = 1;
-weight = 0.005;
-
-dataSets = "/Users/nolantremelling/matlab/Analog Machine Learning Research/Analog Machine Learning/Speech Command Datasets/";
-speechCommands = "/Users/nolantremelling/matlab/Analog Machine Learning Research/Analog Machine Learning/Speech Command Datasets/speech_commands_v0.02/";
-hardDrive = "/Volumes/NolansDrive/Processed Data";
-paramFile = horzcat("N", n_filters, "_Min", f_c_min, "_Max", f_c_max, "_Q", q);
-
+% dimension of feature extractor
+n_rows = n_filters;
+n_cols = 100;
+n_channels = 1;
 
 %% Define and create directories
 clear f_i a_i;
@@ -43,30 +39,57 @@ disp(newDir)
 mkdir(newDir);
 outputFile = strcat('/Users/nolantremelling/matlab/Analog Machine Learning Research/Analog Machine Learning/', fexFolder, "/outputmodel.mat");
 
+%% Dataset size parameters
+% Size of the speech_commands dataset
+totalDatasetSize = 105829;
+
+% Decimal representation of the percentage of dataset used
+datasetWeight = 0.10;
+folderWeight = 1/35;
+trainingWeight = 0.80;
+testingWeight = 0.10;
+validationWeight = 0.10;
+
+reducedDatasetSize = ceil(totalDatasetSize*datasetWeight);
+trainingSize = floor(reducedDatasetSize*trainingWeight);
+testingSize = floor(reducedDatasetSize*testingWeight);
+validationSize = floor(reducedDatasetSize*validationWeight);
+
+trainingSize = floor(trainingSize*folderWeight);
+testingSize = floor(testingSize*folderWeight);
+validationSize = floor(validationSize*folderWeight);
+
+totalTrainingSize = length(folders)*trainingSize;
+totalTestingSize = length(folders)*testingSize;
+totalValidationSize = length(folders)*validationSize;
+
+% Redefine reducedDatasetSize
+reducedDatasetSize = totalTrainingSize + totalTestingSize + totalValidationSize;
+
+%% Path parameters
+dataSets = "/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/SpeechCommandDatasets/";
+speechCommands = "/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/SpeechCommandDatasets/speech_commands_v0.02/";
+hardDrive = "/Volumes/NolansDrive/Processed Data";
+paramFile = horzcat("N", n_filters, "_Min", f_c_min, "_Max", f_c_max, "_Q", q);
 
 %% Create training set data
+trainingOutput = zeros(n_rows,n_cols,n_channels,totalTrainingSize); % Initialize post-feature extraction training set
+trainingOutputCounter = 1;
+
 for k = 1: length(folders)
     filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
     theFiles = dir(filePattern);
-
-    % dimension of feature extractor
-    n_rows = n_filters;
-    n_cols = 100;
-    n_channels = 1;
-
-
-    trainingOutput = zeros(n_rows,n_cols,n_channels,2); % Initialize post-feature extraction training set
-    for i = 1: 80
+    
+    for i = 1: trainingSize
         currentFile = theFiles(i).name;
         % Get name of current file
         fullFileName = fullfile(theFiles(i).folder, currentFile);
-        for j=1:size(trainingOutput,4)
-            % Preprocess the file
-            x_i = fn_preprocess_audio_clip(audioread(fullFileName));
-            % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
-            trainingOutput(:,:,:,j) = x_o;
-        end
+        % Preprocess the file
+        x_i = fn_preprocess_audio_clip(audioread(fullFileName));
+        % Run input signal in feature extractor
+        x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+        trainingOutput(:,:,:,trainingOutputCounter) = x_o;
+        trainingOutputCounter = trainingOutputCounter + 1;
     end
 end
 
@@ -74,35 +97,30 @@ end
 
 trainingLabels = {};
 
-for i = 1 : length(folders)
-    for j = 1 : 80
-        trainingLabels = [trainingLabels, folders{i}];
+for k = 1 : length(folders)
+    for i = 1 : trainingSize
+        trainingLabels = [trainingLabels, folders{k}];
     end
 end
 
 %% Create testing set data
+testingOutput = zeros(n_rows,n_cols,n_channels,2); % Initialize post-feature extraction training set
+testingOutputCounter = 1;
+
 for k = 1: length(folders)
     filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
     theFiles = dir(filePattern);
 
-    % dimension of feature extractor
-    n_rows = n_filters;
-    n_cols = 100;
-    n_channels = 1;
-
-
-    testingOutput = zeros(n_rows,n_cols,n_channels,2); % Initialize post-feature extraction training set
-    for i = 81 : 90
+    for i = 1 : testingSize
         currentFile = theFiles(i).name;
         % Get name of current file
         fullFileName = fullfile(theFiles(i).folder, currentFile);
-        for j=1:size(testingOutput,4)
-            % Preprocess the file
-            x_i = fn_preprocess_audio_clip(audioread(fullFileName));
-            % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
-            testingOutput(:,:,:,j) = x_o;
-        end
+        % Preprocess the file
+        x_i = fn_preprocess_audio_clip(audioread(fullFileName));
+        % Run input signal in feature extractor
+        x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+        testingOutput(:,:,:,testingOutputCounter) = x_o;
+        testingOutputCounter = testingOutputCounter + 1;
     end
 end
 
@@ -110,47 +128,44 @@ end
 
 testingLabels = {};
 
-for i = 1 : length(folders)
-    for j = 1 : 10
+for k = 1 : length(folders)
+    for i = 1 : testingSize
         testingLabels = [testingLabels, folders{i}];
     end
 end
 
 %% Create validation set data
+validationOutput = zeros(n_rows,n_cols,n_channels,2); % Initialize post-feature extraction training set
+validationOutputCounter = 1;
+
 for k = 1: length(folders)
     filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
     theFiles = dir(filePattern);
 
-    % dimension of feature extractor
-    n_rows = n_filters;
-    n_cols = 100;
-    n_channels = 1;
-
-
-    validationOutput = zeros(n_rows,n_cols,n_channels,2); % Initialize post-feature extraction training set
-    for i = 91: 100
+    for i = 1: validationSize
         currentFile = theFiles(i).name;
         % Get name of current file
         fullFileName = fullfile(theFiles(i).folder, currentFile);
-        for j=1:size(validationOutput,4)
-            % Preprocess the file
-            x_i = fn_preprocess_audio_clip(audioread(fullFileName));
-            % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
-            validationOutput(:,:,:,j) = x_o;
-        end
+        % Preprocess the file
+        x_i = fn_preprocess_audio_clip(audioread(fullFileName));
+        % Run input signal in feature extractor
+        x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+        validationOutput(:,:,:,validationOutputCounter) = x_o;
+        validationOutputCounter = validationOutputCounter + 1;
     end
 end
+
 
 %% Create validation set labels
 
 validationLabels = {};
 
-for i = 1 : length(folders)
-    for j = 1 : 10
+for k = 1 : length(folders)
+    for i = 1 : validationSize
         validationLabels = [validationLabels, folders{i}];
     end
 end
 
 %% Save file
 save(outputFile, 'trainingOutput', 'trainingLabels', 'testingOutput', 'testingLabels', 'validationOutput', 'validationLabels');
+
