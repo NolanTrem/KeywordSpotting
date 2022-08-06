@@ -1,6 +1,6 @@
-#Using the CISL Server on Mac
+# Using the CISL Server on Mac
 
-##Logging into server
+## Logging into server
 To access the server, run the following command in the terminal:
 
 `ssh [username]@nalanda.cisl.columbia.edu`
