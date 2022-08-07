@@ -50,6 +50,10 @@ To upload files from your local directory to the server, the following SCP comma
 This will upload all files in the directory to the server. To upload an individual file, use the following
 command:
 
+`scp [/localDir] [username]@nalanda.cisl.columbia.edu:[/destination]`
+
+The difference being the use of `-r` indicating a recursive upload.
+
 ### Running Matlab on the server
 
 To run Matlab scripts, it is helpful to create an alias that allows for quick reference to the location of Matlab.
