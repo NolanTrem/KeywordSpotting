@@ -64,6 +64,8 @@ totalValidationSize = length(folders)*validationSize;
 % Redefine reducedDatasetSize
 reducedDatasetSize = totalTrainingSize + totalTestingSize + totalValidationSize;
 
+warning('off','Control:analysis:LsimUndersampled'); % Turns off undersampling warning
+
 %% Path parameters
 speechCommands = "/space1/maria+nolan/speech_commands_v0.02/";
 paramFile = horzcat("N", n_filters, "_Min", f_c_min, "_Max", f_c_max, "_Q", q);
