@@ -66,9 +66,11 @@ reducedDatasetSize = totalTrainingSize + totalTestingSize + totalValidationSize;
 
 %% Path parameters
 dataSets = "/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/SpeechCommandDatasets/";
-speechCommands = "/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/SpeechCommandDatasets/speech_commands_v0.02/";
+speechCommands = "/Users/nolantremelling/matlab/AnalogMachineLearningResearch/SpeechCommandDatasets/speech_commands_v0.02/";
 hardDrive = "/Volumes/NolansDrive/Processed Data";
 paramFile = horzcat("N", n_filters, "_Min", f_c_min, "_Max", f_c_max, "_Q", q);
+
+warning('off','Control:analysis:LsimUndersampled'); % Turns off undersampling warning
 
 %% Create training set data
 trainingOutput = zeros(n_rows,n_cols,n_channels,totalTrainingSize); % Initialize post-feature extraction training set
