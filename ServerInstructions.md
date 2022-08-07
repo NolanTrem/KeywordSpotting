@@ -50,3 +50,16 @@ To upload files from your local directory to the server, the following SCP comma
 This will upload all files in the directory to the server. To upload an individual file, use the following
 command:
 
+### Running Matlab on the server
+
+To run Matlab scripts, it is helpful to create an alias that allows for quick reference to the location of Matlab.
+A request has been made to make an alias. To launch Matlab in its current directory, run the following:
+
+`/tools/tools2/mathworks/matlab_r2021a/bin/matlab`
+
+This will launch Matlab in the terminal, where you can then run individual files using the following command:
+
+`run myFile.m`
+
+Note that it is necessary to ensure that all necessary files are uploaded to the same working directory. If this is not
+the case, Matlab will not be able to run the script.
