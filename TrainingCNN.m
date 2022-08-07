@@ -2,13 +2,14 @@
 tic
 
 % input filename
-filename_dataset = '/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N32_Min100_Max4000_Q3.mat';
+filename_dataset = '/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3.mat';
 % turn trainingOutput into an imagedatastore and unde trainingLabels as
 % Labelsource
 
 
 % output filename
-trainedNetwork = '/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/network.mat';
+% This must be updated such that it autopopulates!
+trainedNetwork = '/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3_Network.mat';
 %mkdir(trainedNetwork);
 
 %% load

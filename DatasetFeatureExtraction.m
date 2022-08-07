@@ -35,7 +35,7 @@ folders = {'backward'; 'bed'; 'bird'; 'cat'; 'dog'; 'down'; 'eight';
     'yes'; 'zero'};
 
 fexFile = horzcat('N', num2str(n_filters), '_Min', num2str(f_c_min), '_Max', num2str(f_c_max), '_Q', num2str(q));
-outputFile = strcat('/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/', fexFile, ".mat");
+outputFile = strcat('/space1/maria+nolan/FeatureExtractionDatasets/', fexFile, ".mat");
 
 %% Dataset size parameters
 % Size of the speech_commands dataset
@@ -65,9 +65,7 @@ totalValidationSize = length(folders)*validationSize;
 reducedDatasetSize = totalTrainingSize + totalTestingSize + totalValidationSize;
 
 %% Path parameters
-dataSets = "/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/SpeechCommandDatasets/";
-speechCommands = "/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/SpeechCommandDatasets/speech_commands_v0.02/";
-hardDrive = "/Volumes/NolansDrive/Processed Data";
+speechCommands = "/space1/maria+nolan/speech_commands_v0.02/";
 paramFile = horzcat("N", n_filters, "_Min", f_c_min, "_Max", f_c_max, "_Q", q);
 
 %% Create training set data

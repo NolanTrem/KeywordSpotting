@@ -40,3 +40,13 @@ can be updated and changed as necessary.
 `$ git add .gitattributes`
 
 Committing and pushing to the repository is as normal, but larger files will now be uploaded.
+
+### Uploading files to server using Secure Copy Protocol
+
+To upload files from your local directory to the server, the following SCP command can be run:
+
+`scp -r [/localDir] [username]@nalanda.cisl.columbia.edu:[/destination]`
+
+This will upload all files in the directory to the server. To upload an individual file, use the following
+command:
+
