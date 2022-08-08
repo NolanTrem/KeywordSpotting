@@ -67,3 +67,9 @@ This will launch Matlab in the terminal, where you can then run individual files
 
 Note that it is necessary to ensure that all necessary files are uploaded to the same working directory. If this is not
 the case, Matlab will not be able to run the script.
+
+### Leaving scripts to run
+
+It seems that you can leave a script to run to completion using the following:
+
+`nohup /tools/tools2/mathworks/matlab_r2021a/bin/matlab -nosplash -nodisplay -nodesktop -r 'try; DatasetFeatureExtraction;catch;save code_err; end; quit' > output.log &`
