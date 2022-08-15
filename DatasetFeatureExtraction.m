@@ -15,7 +15,7 @@ t_start = 0;
 t_stop = 1;
 
 %% Introduce step parameter for quality factor
-for q = 1:1
+for q = 1:5
     %x_i = the signal doesn't need to be hardcoded here
     n_filters = 32;
     f_c_min = 100;
@@ -94,12 +94,13 @@ for q = 1:1
     end
 
     %% Create training set labels
-    
-    trainingLabels = zeros(1, totalTrainingSize);
+    trainingLabels = strings(1, totalTrainingSize);
+    trainingLabelsCounter = 1;
     
     for k = 1 : length(folders)
         for i = 1 : trainingSize
-            trainingLabels(:) = [trainingLabels, folders{k}];
+            trainingLabels(trainingLabelsCounter) = folders{k};
+            trainingLabelsCounter = trainingLabelsCounter + 1;
         end
     end
     
@@ -125,12 +126,13 @@ for q = 1:1
     end
     
     %% Create testing set labels
-    
-    testingLabels = zeros(1, totalTestingSize);
+    testingLabels = strings(1, totalTestingSize);
+    testingLabelsCounter = 1;
     
     for k = 1 : length(folders)
         for i = 1 : testingSize
-            testingLabels(:) = [testingLabels, folders{k}];
+            testingLabels(testingLabelsCounter) = folders(k);
+            testingLabelsCounter = testingLabelsCounter + 1;
         end
     end
     
@@ -157,12 +159,13 @@ for q = 1:1
     
     
     %% Create validation set labels
+    validationLabels = strings(1, totalValidationSize);
+    validationLabelsCounter = 1;
     
-    
-    validationLabels = zeros(1, totalValidationSize);
     for k = 1 : length(folders)
         for i = 1 : validationSize
-            validationLabels(:) = [validationLabels, folders{k}];
+            validationLabels(validationLabelsCounter) = folders{k};
+            validationLabelsCounter = validationLabelsCounter + 1;
         end
     end
 
