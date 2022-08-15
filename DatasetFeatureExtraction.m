@@ -92,12 +92,13 @@ for k = 1: length(folders)
 end
 
 %% Create training set labels
-
-trainingLabels = {};
+trainingLabels = strings(1, totalTrainingSize);
+trainingLabelsCounter = 1;
 
 for k = 1 : length(folders)
     for i = 1 : trainingSize
-        trainingLabels = [trainingLabels, folders{k}];
+        trainingLabels(trainingLabelsCounter) = folders{k};
+        trainingLabelsCounter = trainingLabelsCounter + 1;
     end
 end
 
@@ -123,12 +124,13 @@ for k = 1: length(folders)
 end
 
 %% Create testing set labels
-
-testingLabels = {};
+testingLabels = strings(1, totalTestingSize);
+testingLabelsCounter = 1;
 
 for k = 1 : length(folders)
     for i = 1 : testingSize
-        testingLabels = [testingLabels, folders{k}];
+        testingLabels(testingLabelsCounter) = folders(k);
+        testingLabelsCounter = testingLabelsCounter + 1;
     end
 end
 
@@ -153,14 +155,14 @@ for k = 1: length(folders)
     end
 end
 
-
 %% Create validation set labels
-
-validationLabels = {};
+validationLabels = strings(1, totalValidationSize);
+validationLabelsCounter = 1;
 
 for k = 1 : length(folders)
     for i = 1 : validationSize
-        validationLabels = [validationLabels, folders{k}];
+        validationLabels(validationLabelsCounter) = folders{k};
+        validationLabelsCounter = validationLabelsCounter + 1;
     end
 end
 
