@@ -17,7 +17,7 @@ t_stop = 1;
 n_filters = 32;
 f_c_min = 100;
 f_c_max = 4000;
-q = 3;
+q = 10;
 a_pb = 1;
 % dimension of feature extractor
 n_rows = n_filters;
