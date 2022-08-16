@@ -15,11 +15,12 @@ t_start = 0;
 t_stop = 1;
 
 %% Introduce step parameter for quality factor
-for q = 1:5
+for n_filters = 2:32:2
     %x_i = the signal doesn't need to be hardcoded here
-    n_filters = 32;
+    %n_filters = 32;
     f_c_min = 100;
     f_c_max = 4000;
+    q = 3;
     a_pb = 1;
     % dimension of feature extractor
     n_rows = n_filters;
