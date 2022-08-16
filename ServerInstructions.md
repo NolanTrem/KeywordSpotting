@@ -72,4 +72,4 @@ the case, Matlab will not be able to run the script.
 
 It seems that you can leave a script to run to completion using the following:
 
-`nohup /tools/tools2/mathworks/matlab_r2021a/bin/matlab -nosplash -nodisplay -nodesktop -r 'try; DatasetFeatureExtraction;catch;save code_err; end; quit' > output.log &`
+`nohup /tools/tools2/mathworks/matlab_r2021a/bin/matlab -r 'try; DatasetFeatureExtraction;catch;save code_err; end; quit' > output.log &`
