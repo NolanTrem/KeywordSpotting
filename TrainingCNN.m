@@ -1,16 +1,25 @@
 %% specify filenames of input and output
 tic
 
+counter = 1;
+
+for i = 1:10
+
 % input filename
 filename_dataset = '/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3.mat';
 % turn trainingOutput into an imagedatastore and unde trainingLabels as
 % Labelsource
 
-
 % output filename
 % This must be updated such that it autopopulates!
-trainedNetwork = '/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3_Network.mat';
+trainedNetwork = strcat("/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3_Network", string(counter), ".mat");
 %mkdir(trainedNetwork);
+
+counter = counter+1;
+
+disp(trainedNetwork)
+
+end
 
 %% load
 load(filename_dataset);
@@ -140,5 +149,5 @@ predictionLabels = transpose(testingLabels);
 accuracy = sum(predictions == predictionLabels)/numel(predictionLabels);
 
 %% save the trained network
-save(trainedNetwork,'net_trained');
+save(trainedNetwork,'net_trained', 'accuracy');
 toc
