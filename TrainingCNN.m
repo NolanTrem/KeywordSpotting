@@ -15,12 +15,6 @@ filename_dataset = '/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max
 trainedNetwork = strcat("/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3_Network", string(counter), ".mat");
 %mkdir(trainedNetwork);
 
-counter = counter+1;
-
-disp(trainedNetwork)
-
-end
-
 %% load
 load(filename_dataset);
 trainingLabels = categorical(trainingLabels);
@@ -150,4 +144,8 @@ accuracy = sum(predictions == predictionLabels)/numel(predictionLabels);
 
 %% save the trained network
 save(trainedNetwork,'net_trained', 'accuracy');
+counter = counter+1;
+
+end
+
 toc
