@@ -2,7 +2,8 @@
 tic
 
 % input filename
-filename_dataset = '/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N32_Min100_Max4000_Q3.mat';
+fexParameterFile = 'N32_Min100_Max4000_Q3.mat';
+filename_dataset = ['/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/' fexParameterFile];
 % turn trainingOutput into an imagedatastore and unde trainingLabels as
 % Labelsource
 
@@ -133,6 +134,11 @@ options = trainingOptions('sgdm', ...
 
 net_trained = trainNetwork(trainingOutput,trainingLabels,lgraph,options);
 
+%% Calculate the accuracy of the network
+predictions = classify(net_trained, testingOutput);
+predictionLabels = transpose(testingLabels);
+accuracy = sum(predictions == predictionLabels)/numel(predictionLabels);
+
 %% save the trained network
-save(trainedNetwork,'net_trained');
+save(trainedNetwork, 'net_trained', 'accuracy');
 toc
