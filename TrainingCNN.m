@@ -134,6 +134,11 @@ options = trainingOptions('sgdm', ...
 
 net_trained = trainNetwork(trainingOutput,trainingLabels,lgraph,options);
 
+%% Calculate the accuracy of the network
+predictions = classify(net_trained, testingOutput);
+predictionLabels = transpose(testingLabels);
+accuracy = sum(predictions == predictionLabels)/numel(predictionLabels);
+
 %% save the trained network
 save(trainedNetwork,'net_trained');
 toc
