@@ -8,12 +8,10 @@ test6 = load('/Users/nolantremelling/matlab/AnalogMachineLearningResearch/Analog
 test7 = load('/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N32_Min100_Max4000_Q3_Network7.mat', 'accuracy');
 test8 = load('/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N32_Min100_Max4000_Q3_Network8.mat', 'accuracy');
 test9 = load('/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N32_Min100_Max4000_Q3_Network9.mat', 'accuracy');
-test10 = load('/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N32_Min100_Max4000_Q3_Network10.mat', 'accuracy');
 
 %% Store accuracy
-accuracyMeasures(10, 1) = [test1.accuracy; test2.accuracy;
+accuracyMeasures = [test1.accuracy; test2.accuracy;
     test3.accuracy; test4.accuracy; test5.accuracy; test6.accuracy;
-    test7.accuracy; test8.accuracy; test9.accuracy; test10.accuracy];
+    test7.accuracy; test8.accuracy; test9.accuracy];
 
-boxplot(accuracyMeasures)
-
+boxplot(accuracyMeasures, "Orientation", "horizontal")
