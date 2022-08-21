@@ -112,7 +112,7 @@ for k = 1: length(folders)
     filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
     theFiles = dir(filePattern);
 
-    for i = 1 : testingSize
+    for i = trainingSize : (trainingSize + testingSize)
         currentFile = theFiles(i).name;
         % Get name of current file
         fullFileName = fullfile(theFiles(i).folder, currentFile);
@@ -144,7 +144,7 @@ for k = 1: length(folders)
     filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
     theFiles = dir(filePattern);
 
-    for i = 1: validationSize
+    for i = (trainingSize + testingSize) : (trainingSize + testingSize + validationSize)
         currentFile = theFiles(i).name;
         % Get name of current file
         fullFileName = fullfile(theFiles(i).folder, currentFile);
