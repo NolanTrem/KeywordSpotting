@@ -3,7 +3,7 @@ tic
 
 % input filename
 fexParameterFile = 'N32_Min100_Max4000_Q3.mat';
-filename_dataset = ['/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/' fexParameterFile];
+filename_dataset = strcat('/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/', fexParameterFile);
 % turn trainingOutput into an imagedatastore and unde trainingLabels as
 % Labelsource
 
