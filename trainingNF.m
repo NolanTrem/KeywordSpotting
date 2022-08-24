@@ -4,10 +4,9 @@ for n = 2:2:32
     %% specify filenames of input and output
 
     % input filename
-    filename_dataset = strcat('/space1/maria+nolan/FeatureExtractionDatasets/N', string(n), '_Min100_Max_Q3.mat');
+    filename_dataset = strcat('/space1/maria+nolan/FeatureExtractionDatasets/N', string(n), '_Min100_Max4000_Q3.mat');
     % turn trainingOutput into an imagedatastore and unde trainingLabels as
     % Labelsource
-    
     
     % output filename
     % This must be updated such that it autopopulates!
