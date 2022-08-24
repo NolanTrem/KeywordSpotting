@@ -1,15 +1,8 @@
 %% Dataset feature extraction
-% So far this script produces the desired .mat output for the feature
-% extractor with labels. In the future, update to suppress warnings for
-% 'undersampled' audio files.
-
-% An additional updated version of this implementation of the feature
-% extractor should step through the feature extractor parameters to create
-% a massive dataset of processed audio.
+% This script produces feature extracted datasets with a varied maximum
+% center frequency with other parameters set.
 
 %% Define dataset source
-% In the final implementation these parameters will be given a range such
-% that they will be stepped through rather than hardcoded.
 tic
 t_start = 0;
 t_stop = 1;
@@ -113,7 +106,7 @@ for n_filters = 2:2:32
         filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
         theFiles = dir(filePattern);
     
-        for i = trainingSize : (trainingSize + testingSize)
+        for i = (trainingSize + 1) : (trainingSize + testingSize + 1)
             currentFile = theFiles(i).name;
             % Get name of current file
             fullFileName = fullfile(theFiles(i).folder, currentFile);
@@ -145,7 +138,7 @@ for n_filters = 2:2:32
         filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
         theFiles = dir(filePattern);
     
-        for i = (trainingSize + testingSize) : (trainingSize + testingSize + validationSize)
+        for i = (trainingSize + testingSize + 1) : (trainingSize + testingSize + validationSize + 1)
             currentFile = theFiles(i).name;
             % Get name of current file
             fullFileName = fullfile(theFiles(i).folder, currentFile);
