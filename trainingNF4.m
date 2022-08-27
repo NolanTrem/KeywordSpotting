@@ -6,7 +6,7 @@ for n = 2:2:32
     filename_dataset = strcat('/space1/maria+nolan/FeatureExtractionDatasets/N', string(n), '_Min100_Max4000_Q3.mat');
     
     % output filename
-    trainedNetwork = strcat('/space1/maria+nolan/TrainedNetworks2/N', string(n), '_Min100_Max_Q3_Network.mat');
+    trainedNetwork = strcat('/space1/maria+nolan/TrainedNetworks4/N', string(n), '_Min100_Max_Q3_Network.mat');
     
     %% load
     load(filename_dataset);
