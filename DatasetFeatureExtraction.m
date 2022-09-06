@@ -113,7 +113,7 @@ for n_filters = 2:2:32
             % Preprocess the file
             x_i = fn_preprocess_audio_clip(audioread(fullFileName));
             % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+            x_o = fn_fex(fexFile, t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
             testingOutput(:,:,:,testingOutputCounter) = x_o;
             testingOutputCounter = testingOutputCounter + 1;
         end
@@ -145,7 +145,7 @@ for n_filters = 2:2:32
             % Preprocess the file
             x_i = fn_preprocess_audio_clip(audioread(fullFileName));
             % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+            x_o = fn_fex(fexFile, t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
             validationOutput(:,:,:,validationOutputCounter) = x_o;
             validationOutputCounter = validationOutputCounter + 1;
         end

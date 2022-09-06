@@ -9,8 +9,7 @@ function createFilterbankAndPlot = sc_create_filterbank_and_plot_response(file, 
 
 
 %% create transfer functions of bandpass filters
-clear filterBank;
-filterBank = strcat('/space1/maria+nolan/FilterBanks', file, 'FilterBank.mat');
+filterBank = strcat('/space1/maria+nolan/FilterBanks/', file, 'FilterBank.mat');
 
 f_c = logspace(log10(f_c_min),log10(f_c_max),n_filters); clear f_c_min f_c_max; % [Hz], vector of center frequencies of bandpass responses
 createFilterbankAndPlot = tf(zeros(1,1,n_filters));
