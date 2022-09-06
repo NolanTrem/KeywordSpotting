@@ -1,6 +1,6 @@
-function x_o = fn_fex(t_start, t_stop, x_i, n_filters,f_c_min,f_c_max, q, a_pb)
+function x_o = fn_fex(file, t_start, t_stop, x_i, n_filters,f_c_min,f_c_max, q, a_pb)
 
-createFilterbankAndPlot = sc_create_filterbank_and_plot_response(n_filters,f_c_min,f_c_max,q,a_pb);
+createFilterbankAndPlot = sc_create_filterbank_and_plot_response(file, n_filters,f_c_min,f_c_max,q,a_pb);
 
 % feed input signal through filterbank
 load('filterbank');

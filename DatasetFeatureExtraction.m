@@ -1,11 +1,4 @@
 %% Dataset feature extraction
-% So far this script produces the desired .mat output for the feature
-% extractor with labels. In the future, update to suppress warnings for
-% 'undersampled' audio files.
-
-% An additional updated version of this implementation of the feature
-% extractor should step through the feature extractor parameters to create
-% a massive dataset of processed audio.
 
 %% Define dataset source
 % In the final implementation these parameters will be given a range such
@@ -38,14 +31,14 @@ for n_filters = 2:2:32
         'yes'; 'zero'};
     
     fexFile = horzcat('N', num2str(n_filters), '_Min', num2str(f_c_min), '_Max', num2str(f_c_max), '_Q', num2str(q));
-    outputFile = strcat('/space1/maria+nolan/FeatureExtractionDatasets/', fexFile, ".mat");
+    outputFile = strcat('/space1/maria+nolan/ReducedFeatureExtractionDatasets/', fexFile, ".mat");
     
     %% Dataset size parameters
     % Size of the speech_commands dataset
     totalDatasetSize = 105829;
     
     % Decimal representation of the percentage of dataset used
-    datasetWeight = 0.10;
+    datasetWeight = 0.00125;
     folderWeight = 1/length(folders);
     trainingWeight = 0.80;
     testingWeight = 0.10;
@@ -88,7 +81,7 @@ for n_filters = 2:2:32
             % Preprocess the file
             x_i = fn_preprocess_audio_clip(audioread(fullFileName));
             % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+            x_o = fn_fex(fexFile, t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
             trainingOutput(:,:,:,trainingOutputCounter) = x_o;
             trainingOutputCounter = trainingOutputCounter + 1;
         end

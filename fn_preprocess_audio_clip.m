@@ -1,5 +1,7 @@
 function x_preproc = fn_preprocess_audio_clip(x)
 
+clear n_samples n_zeros_to_pad n_zeros_to_pad_left n_zeros_to_pad_right x_pad x_pad_norm x_preproc;
+
 % zero-pad to be 16,000 samples long <-- assumes x is no longer than 16000 samples
 n_samples = length(x);
 n_zeros_to_pad = 16000-n_samples;

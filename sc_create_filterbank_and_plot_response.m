@@ -1,4 +1,4 @@
-function createFilterbankAndPlot = sc_create_filterbank_and_plot_response(n_filters, f_c_min, f_c_max, q, a_pb)
+function createFilterbankAndPlot = sc_create_filterbank_and_plot_response(file, n_filters, f_c_min, f_c_max, q, a_pb)
 
 % %% specify parameters of bandpass filterbank
 % n_filters = 16; % [#], number of bandpass filters
@@ -9,6 +9,9 @@ function createFilterbankAndPlot = sc_create_filterbank_and_plot_response(n_filt
 
 
 %% create transfer functions of bandpass filters
+clear filterBank;
+filterBank = strcat('/space1/maria+nolan/FilterBanks', file, 'FilterBank.mat');
+
 f_c = logspace(log10(f_c_min),log10(f_c_max),n_filters); clear f_c_min f_c_max; % [Hz], vector of center frequencies of bandpass responses
 createFilterbankAndPlot = tf(zeros(1,1,n_filters));
 for i=1:n_filters
@@ -29,6 +32,9 @@ for i=1:n_filters
     filter_magresp = reshape(filter_magresp,[1,size(filter_magresp,3)]);
     filterbank_magresp_db(i,:) = 20*log10(abs(filter_magresp));
 end
+
+save(filterBank, 'createFilterbankAndPlot')
+
 clear i filter_magresp;
 
 
