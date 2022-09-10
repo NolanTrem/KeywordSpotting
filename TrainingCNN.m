@@ -2,14 +2,14 @@
 tic
 
 % input filename
-filename_dataset = '/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3.mat';
+filename_dataset = '/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N2_Min100_Max4000_Q3.mat';
 % turn trainingOutput into an imagedatastore and unde trainingLabels as
 % Labelsource
 
 
 % output filename
 % This must be updated such that it autopopulates!
-trainedNetwork = '/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q3_Network.mat';
+trainedNetwork = '/Users/nolantremelling/matlab/AnalogMachineLearningResearch/AnalogMachineLearning/N2_Min100_Max4000_Q3_TrainedNetworkTEST3.mat';
 %mkdir(trainedNetwork);
 
 %% load
@@ -17,8 +17,6 @@ load(filename_dataset);
 trainingLabels = categorical(trainingLabels);
 validationLabels = categorical(validationLabels);
 testingLabels = categorical(testingLabels);
-
-trainingSize = 8435;
 
 %% define architecture of neural network
 % determine weights of classes and number of classes
@@ -112,7 +110,7 @@ lgraph = connectLayers(lgraph,'add5','add6/in2');
 miniBatchSize = 64;
 validationFrequency = floor(numel(validationLabels)/miniBatchSize);
 options = trainingOptions('sgdm', ...
-    'Momentum',0.9,...
+    'Momentum',0.95,...
     'InitialLearnRate',0.05, ...
     'MaxEpochs',20, ...
     'MiniBatchSize',miniBatchSize, ...
@@ -123,9 +121,9 @@ options = trainingOptions('sgdm', ...
     'ValidationData',{validationOutput,validationLabels}, ...
     'ValidationFrequency',validationFrequency, ...
     'LearnRateSchedule','piecewise', ...
-    'LearnRateDropFactor',0.5, ...
+    'LearnRateDropFactor',0.25, ...
     'LearnRateDropPeriod',5,...
-    'ExecutionEnvironment','auto');
+    'ExecutionEnvironment','parallel');
 
 %% train the network
 %  - the inputs are
@@ -140,5 +138,5 @@ predictionLabels = transpose(testingLabels);
 accuracy = sum(predictions == predictionLabels)/numel(predictionLabels);
 
 %% save the trained network
-save(trainedNetwork,'net_trained');
+save(trainedNetwork,'net_trained', 'accuracy');
 toc

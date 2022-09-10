@@ -8,7 +8,7 @@ t_start = 0;
 t_stop = 1;
 
 %% Introduce step parameter for quality factor
-for n_filters = 2:2:32
+for n_filters = 4:2:32
     %x_i = the signal doesn't need to be hardcoded here
     %n_filters = 32;
     f_c_min = 100;
@@ -31,14 +31,14 @@ for n_filters = 2:2:32
         'yes'; 'zero'};
     
     fexFile = horzcat('N', num2str(n_filters), '_Min', num2str(f_c_min), '_Max', num2str(f_c_max), '_Q', num2str(q));
-    outputFile = strcat('/space1/maria+nolan/ReducedFeatureExtractionDatasets/', fexFile, ".mat");
+    outputFile = strcat('/space1/maria+nolan/FeatureExtractionDatasets/', fexFile, ".mat");
     
     %% Dataset size parameters
     % Size of the speech_commands dataset
     totalDatasetSize = 105829;
     
     % Decimal representation of the percentage of dataset used
-    datasetWeight = 0.00125;
+    datasetWeight = 0.1;
     folderWeight = 1/length(folders);
     trainingWeight = 0.80;
     testingWeight = 0.10;
@@ -106,7 +106,7 @@ for n_filters = 2:2:32
         filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
         theFiles = dir(filePattern);
     
-        for i = trainingSize : (trainingSize + testingSize)
+        for i = (trainingSize + 1) : (trainingSize + testingSize)
             currentFile = theFiles(i).name;
             % Get name of current file
             fullFileName = fullfile(theFiles(i).folder, currentFile);
@@ -138,7 +138,7 @@ for n_filters = 2:2:32
         filePattern = fullfile(speechCommands, folders{k}, "/*.wav");
         theFiles = dir(filePattern);
     
-        for i = (trainingSize + testingSize) : (trainingSize + testingSize + validationSize)
+        for i = (trainingSize + testingSize + 1) : (trainingSize + testingSize + validationSize)
             currentFile = theFiles(i).name;
             % Get name of current file
             fullFileName = fullfile(theFiles(i).folder, currentFile);
