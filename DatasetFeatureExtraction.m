@@ -8,7 +8,7 @@ t_start = 0;
 t_stop = 1;
 
 %% Introduce step parameter for quality factor
-for n_filters = 4:2:32
+for n_filters = 2:2:32
     %x_i = the signal doesn't need to be hardcoded here
     %n_filters = 32;
     f_c_min = 100;

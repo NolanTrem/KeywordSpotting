@@ -1,8 +1,8 @@
 %% Dataset feature extraction
-% This script produces feature extracted datasets with a varied maximum
-% center frequency with other parameters set.
 
 %% Define dataset source
+% In the final implementation these parameters will be given a range such
+% that they will be stepped through rather than hardcoded.
 tic
 t_start = 0;
 t_stop = 1;
@@ -38,7 +38,7 @@ for n_filters = 2:2:32
     totalDatasetSize = 105829;
     
     % Decimal representation of the percentage of dataset used
-    datasetWeight = 0.10;
+    datasetWeight = 0.1;
     folderWeight = 1/length(folders);
     trainingWeight = 0.80;
     testingWeight = 0.10;
@@ -81,7 +81,7 @@ for n_filters = 2:2:32
             % Preprocess the file
             x_i = fn_preprocess_audio_clip(audioread(fullFileName));
             % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+            x_o = fn_fex(fexFile, t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
             trainingOutput(:,:,:,trainingOutputCounter) = x_o;
             trainingOutputCounter = trainingOutputCounter + 1;
         end
@@ -113,7 +113,7 @@ for n_filters = 2:2:32
             % Preprocess the file
             x_i = fn_preprocess_audio_clip(audioread(fullFileName));
             % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+            x_o = fn_fex(fexFile, t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
             testingOutput(:,:,:,testingOutputCounter) = x_o;
             testingOutputCounter = testingOutputCounter + 1;
         end
@@ -145,7 +145,7 @@ for n_filters = 2:2:32
             % Preprocess the file
             x_i = fn_preprocess_audio_clip(audioread(fullFileName));
             % Run input signal in feature extractor
-            x_o = fn_fex(t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
+            x_o = fn_fex(fexFile, t_start, t_stop, x_i, n_filters, f_c_min, f_c_max, q, a_pb);
             validationOutput(:,:,:,validationOutputCounter) = x_o;
             validationOutputCounter = validationOutputCounter + 1;
         end
