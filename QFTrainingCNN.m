@@ -1,16 +1,16 @@
 %% specify filenames of input and output
 
-for i = 32
-    for test = 2:3
+for i = [0.1, 1, 2, 4, 5, 10, 100]
+    for test = 1:3
         % input filename
-        filename_dataset = strcat('/space1/maria+nolan/FeatureExtractionDatasets/N', num2str(i), '_Min100_Max4000_Q3.mat');
+        filename_dataset = strcat('/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max4000_Q', num2str(i), '.mat');
         % turn trainingOutput into an imagedatastore and unde trainingLabels as
         % Labelsource
         
         
         % output filename
         % This must be updated such that it autopopulates!
-        trainedNetwork = strcat('/space1/maria+nolan/FeatureExtractionDatasets/TrainedNetworks/N', num2str(i), '_Min100_Max4000_Q3_TrainedNetwork', num2str(test), '.mat');
+        trainedNetwork = strcat('/space1/maria+nolan/FeatureExtractionDatasets/TrainedNetworks/N32_Min100_Max4000_Q', num2str(i),'_TrainedNetwork', num2str(test), '.mat');
         %mkdir(trainedNetwork);
         
         %% load
@@ -124,7 +124,7 @@ for i = 32
             'LearnRateSchedule','piecewise', ...
             'LearnRateDropFactor',0.25, ...
             'LearnRateDropPeriod',5,...
-            'ExecutionEnvironment','parallel');
+            'ExecutionEnvironment','auto');
         
         %% train the network
         %  - the inputs are

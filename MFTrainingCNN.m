@@ -1,9 +1,9 @@
 %% specify filenames of input and output
 
-for i = 32
-    for test = 2:3
+for i = 3200:400:3600
+    for test = 1:3
         % input filename
-        filename_dataset = strcat('/space1/maria+nolan/FeatureExtractionDatasets/N', num2str(i), '_Min100_Max4000_Q3.mat');
+        filename_dataset = strcat('/space1/maria+nolan/FeatureExtractionDatasets/N32_Min100_Max', num2str(i), '_Q3.mat');
         % turn trainingOutput into an imagedatastore and unde trainingLabels as
         % Labelsource
         
@@ -124,7 +124,7 @@ for i = 32
             'LearnRateSchedule','piecewise', ...
             'LearnRateDropFactor',0.25, ...
             'LearnRateDropPeriod',5,...
-            'ExecutionEnvironment','parallel');
+            'ExecutionEnvironment','auto');
         
         %% train the network
         %  - the inputs are
