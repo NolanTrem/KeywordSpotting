@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20abf9e6-c765-4c0a-a59a-03a893721db1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DatasetFeatureExtraction.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingCNN.m" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingCNN.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filterbank.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fn_envdet.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fn_fex.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fn_preprocess_audio_clip.m" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sc_create_filterbank_and_plot_response.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +45,8 @@
       <workItem from="1659819436316" duration="899000" />
       <workItem from="1659846526668" duration="5771000" />
       <workItem from="1662659924731" duration="77000" />
+      <workItem from="1671681616803" duration="1099000" />
+      <workItem from="1671688923381" duration="2230000" />
     </task>
     <servers />
   </component>
