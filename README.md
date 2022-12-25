@@ -61,10 +61,10 @@ Sun's implementation of the ResNet15 model using 100% of dataset:
 MATLAB implementation of "vanilla" CNN model using only 10% of dataset:
 
 |                          | Proposed optimization | Accuracy | Corrected accuracy( 0.13 loss correction) |
-|--------------------------|----------------------|----------|-------------------------------------------|
-| Number of filters        | n = 16               | 86.381%  | 97.61053%                                 |
-| Quality factor           | q = 3                | 86.667%  | 97.93371%                                 |
-| Maximum center frequency | F = 2000Hz           | 85.905%  | 97.07265%                                 |
+|--------------------------|-----------------------|----------|-------------------------------------------|
+| Number of filters        | n = 16                | 86.381%  | 97.61053%                                 |
+| Quality factor           | q = 3                 | 86.667%  | 97.93371%                                 |
+| Maximum center frequency | F = 2000Hz            | 85.905%  | 97.07265%                                 |
 
 # Further Testing
 
