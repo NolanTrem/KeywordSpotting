@@ -83,14 +83,13 @@ The following parameters were chosen to be covariated with the specified ranges
 
 **Test 1:**
 - [14, 18] filters, with a step of 1.
-- Quality factor of 3, with a step of 1.
-- Maximum frequency [1800, 2200], with a step of 2.
-
+- Quality factor of 3.
+- Maximum frequency [1800, 2200], with a step of 100.
 
 **Test 2:**
 - [14, 18] filters, with a step of 1.
 - Quality factor of [2, 4], with a step of 1.
-- Maximum frequency 2000, with a step of 2.
+- Maximum frequency 2000.
 
 These values will then be individually plotted to find an optimized dataset. The results of both tests will
 then be summed and plotted, allowing for optimization in four dimensions.
@@ -170,3 +169,10 @@ the case, Matlab will not be able to run the script.
 It seems that you can leave a script to run to completion using the following:
 
 `nohup /tools/tools2/mathworks/matlab_r2021a/bin/matlab -r 'try; DatasetFeatureExtraction;catch;save code_err; end; quit' > output.log &`
+
+And for TraningCNN.m:
+
+`nohup /tools/tools2/mathworks/matlab_r2021a/bin/matlab -r 'try; TrainingCNN;catch;save code_err; end; quit' > output.log &`
+
+For whatever reason, it appears that sometimes it will run a nohup, but other times it doesn't seem to run as a nohup process.
+The script, however will continue running if you do not disconnect from the session but rather allow it to expire.
