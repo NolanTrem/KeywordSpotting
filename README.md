@@ -66,6 +66,11 @@ MATLAB implementation of "vanilla" CNN model using only 10% of dataset:
 | Quality factor           | q = 3                 | 86.667%  | 97.93371%                                 |
 | Maximum center frequency | F = 2000Hz            | 85.905%  | 97.07265%                                 |
 
+![Results for variation of maximum center frequency](Photos/NumberOfFiltersAccuracyChart.bmp)
+![Results for variation of maximum center frequency](Photos/MaxFrequencyAccuracyChart.bmp)
+![Results for variation of maximum center frequency](Photos/QualityFactorAccuracyChart.bmp)
+
+
 # Further Testing
 
 ## Parameter Covariation
@@ -81,10 +86,12 @@ two parameters are varied such that a three-dimensional mapping can be created a
 
 The following parameters were chosen to be covariated with the specified ranges
 
-**Test 1:**
+**Test 1, covariation of filters and maximum center frequency**
 - [14, 18] filters, with a step of 1.
 - Quality factor of 3.
 - Maximum frequency [1800, 2200], with a step of 100.
+
+![Results for covariation of filters and maximum center frequency](Photos/filtersFrequencyCovariation.bmp)
 
 **Test 2:**
 - [14, 18] filters, with a step of 1.
