@@ -91,8 +91,6 @@ The following parameters were chosen to be covariated with the specified ranges
 - Quality factor of 3.
 - Maximum frequency [1800, 2200], with a step of 100.
 
-![Results for covariation of filters and maximum center frequency](Photos/filtersFrequencyCovariation.bmp)
-
 **Test 2:**
 - [14, 18] filters, with a step of 1.
 - Quality factor of [2, 4], with a step of 1.
@@ -100,6 +98,38 @@ The following parameters were chosen to be covariated with the specified ranges
 
 These values will then be individually plotted to find an optimized dataset. The results of both tests will
 then be summed and plotted, allowing for optimization in four dimensions.
+
+## Analysis of results
+**Covariation of filters and maximum center frequency**
+
+There arises an interesting increase in accuracy at 15 filters with a maximum center frequency of 2000Hz. The previously proposed
+optimization of 16 filters, a maximum center frequency of 2000Hz, and a quality factor of 3 produced an average classification accuracy
+of 84.67% in this test. At 15 filters, a maximum center frequency of 2000Hz, and a quality factor of 3 produced an average classification
+accuracy of 85.46%. While an improvement of 0.79% may be small, this improvement has potential to scale significantly due to the reduced
+dataset size used in this test.
+
+![Results for covariation of filters and maximum center frequency](Photos/filtersFrequencyCovariation.bmp)
+
+It is possible that the distribution of 15 filters rather than 16 filters more fully captures the range of voicing in the audio recordings.
+This can be analyzed by exploring the area captured by the filter bank responses(?)
+
+![Filter bank with 15 filters](Photos/Filterbank15Filters100to2000.bmp)
+
+$\frac{209.4 s}{s^2 + 209.4 s + 3.948e05}$
+$\frac{259.4 s}{s^2 + 259.4 s + 6.056e05}$
+$\frac{321.3 s}{s^2 + 321.3 s + 9.291e05}$
+$\frac{398 s}{s^2 + 398 s + 1.425e06}$
+$\frac{492.9 s}{s^2 + 492.9 s + 2.187e06}$
+$\frac{610.5 s}{s^2 + 610.5 s + 3.355e06}$
+$\frac{756.2 s}{s^2 + 756.2 s + 5.147e06}$
+$\frac{936.6 s}{s^2 + 936.6 s + 7.896e06}$
+$\frac{1160 s}{s^2 + 1160 s + 1.211e07}$
+$\frac{1437 s}{s^2 + 1437 s + 1.858e07}$
+$\frac{1780 s}{s^2 + 1780 s + 2.851e07}$
+$\frac{2204 s}{s^2 + 2204 s + 4.374e07}$
+$\frac{2730 s}{s^2 + 2730 s + 6.71e07}$
+$\frac{3382 s}{s^2 + 3382 s + 1.029e08}$
+$\frac{4189 s}{s^2 + 4189 s + 1.579e08}$
 
 # Using the CISL server on Mac
 
