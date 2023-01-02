@@ -113,9 +113,8 @@ dataset size used in this test.
 It is possible that the distribution of 15 filters rather than 16 filters more fully captures the range of voicing in the audio recordings.
 This can be analyzed by exploring the area captured by the filter bank responses(?)
 
+
 ![Filter bank with 15 filters](Photos/Filterbank15Filters100to2000.bmp)
-
-
 
 | Transfer functions for 15 filters:         |                                            |                                            |
 |--------------------------------------------|--------------------------------------------|--------------------------------------------|
@@ -126,6 +125,14 @@ This can be analyzed by exploring the area captured by the filter bank responses
 | $\frac{2730 s}{s^2 + 2730 s + 6.71e07}$    | $\frac{3382 s}{s^2 + 3382 s + 1.029e08}$   | $\frac{4189 s}{s^2 + 4189 s + 1.579e08}$   |
 
 
+![Filter bank with 15 filters](Photos/Filterbank16Filters100to2000.bmp)
+
+| Transfer functions for 16 filters:         |                                            |                                            |                                            |
+|--------------------------------------------|--------------------------------------------|--------------------------------------------|--------------------------------------------|
+| $\frac{209.4 s}{s^2 + 209.4 s + 3.948e05}$ | $\frac{255.7 s}{s^2 + 255.7 s + 5.886e05}$ | $\frac{312.3 s}{s^2 + 312.3 s + 8.776e05}$ | $\frac{381.3 s}{s^2 + 381.3 s + 1.308e06}$ |
+| $\frac{465.6 s}{s^2 + 465.6 s + 1.951e06}$ | $\frac{568.5 s}{s^2 + 568.5 s + 2.909e06}$ | $\frac{694.2 s}{s^2 + 694.2 s + 4.337e06}$ | $\frac{847.6 s}{s^2 + 847.6 s + 6.466e06}$ |
+| $\frac{1035 s}{s^2 + 1035 s + 9.641e06}$   | $\frac{1264 s}{s^2 + 1264 s + 1.437e07}$   | $\frac{1543 s}{s^2 + 1543 s + 2.143e07}$   | $\frac{1884 s}{s^2 + 1884 s + 3.195e07}$   |
+| $\frac{2301 s}{s^2 + 2301 s + 4.764e07}$   | $\frac{2809 s}{s^2 + 2809 s + 7.104e07}$   | $\frac{3430 s}{s^2 + 3430 s + 1.059e08}$   | $\frac{4189 s}{s^2 + 4189 s + 1.579e08}$   |
 
 
 # Using the CISL server on Mac
