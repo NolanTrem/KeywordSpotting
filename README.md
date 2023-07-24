@@ -5,6 +5,8 @@ The aim of this research is to explore the on-chip and neural network parameters
 such as Amazon Alexa, Siri, and Google Home. System design greatly impacts the functionality and reliability of the
 produced results.
 
+Our final publication of this work was accepted as a full paper by the [TinyML Research Symposium 2023 and is available here](https://arxiv.org/abs/2304.08541).
+
 # Initial testing
 The scripts in this repository were developed to allow for the processing, feature extraction, classification, and
 post-classification of the dataset. The neural network chosen for this implementation is a vanilla-network described by
